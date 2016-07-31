@@ -1,0 +1,107 @@
+﻿<Window x:Class="ShareFolderProgramm.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShareFolderProgramm.View"
+        mc:Ignorable="d"
+        Title="Shared folder creator" Height="500" Width="500"
+        ResizeMode="NoResize"
+        >
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                <Grid IsEnabled="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        File batch
+                    </Label>
+                    <ListBox Grid.Row="1" IsEnabled="{Binding IsControlsEnable}"
+                             Name="listBox">
+
+                    </ListBox>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Button VerticalAlignment="Center" Margin="33,0,0,0"
+                                Command="{Binding AddFilesCommand}">
+                            Add files
+                        </Button>
+                        <Button VerticalAlignment="Center" Margin="70,0,0,0"
+                                Click="RemoveFilesClick">
+                            Remove files
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                <Grid IsEnabled="{Binding IsControlsEnable}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        Parent folder
+                    </Label>
+                    <TextBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                             Margin="5" Text="{Binding ParentFolder,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Command="{Binding ChooseParentCommand}">
+                        Choose
+                    </Button>
+
+                    <Label Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        Folder name prefix
+                    </Label>
+                    <TextBox Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5"
+                             Text="{Binding FolderNamePrefix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        
+                    </TextBox>
+
+                    <Label Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        Folders count
+                    </Label>
+                    <TextBox Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                             Margin="5" Text="{Binding AllFoldersCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    <Button Grid.Row="6" Grid.ColumnSpan="2" Margin="50"
+                            Command="{Binding CreateFoldersCommand}">
+                        Start creating
+                    </Button>
+
+                    <Label Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                           Content="{Binding Status}">
+                        
+                    </Label>
+                    <ProgressBar Grid.Row="8" Grid.ColumnSpan="2" Margin="2"
+                                 Maximum="{Binding AllFoldersCount}" 
+                                 Value="{Binding ProcessedFoldersCount}"
+                                 Minimum="0">
+                    </ProgressBar>
+                </Grid>
+            </Border>
+                     
+        </Grid>
+    </Grid>
+</Window>
