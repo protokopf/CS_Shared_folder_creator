@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ShareFolderProgramm.View"
         mc:Ignorable="d"
         Title="Shared folder creator" Height="500" Width="500"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
         >
     <Grid>
         <Grid>
@@ -16,7 +16,7 @@
             </Grid.ColumnDefinitions>
             
             <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
-                <Grid IsEnabled="False">
+                <Grid IsEnabled="{Binding IsControlsEnable}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="8*"/>
@@ -26,9 +26,9 @@
                     <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                         File batch
                     </Label>
-                    <ListBox Grid.Row="1" IsEnabled="{Binding IsControlsEnable}"
+                    <ListBox Grid.Row="1" ItemsSource="{Binding FileNames}"
+                             SelectionMode="Multiple"
                              Name="listBox">
-
                     </ListBox>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <Button VerticalAlignment="Center" Margin="33,0,0,0"
@@ -36,7 +36,7 @@
                             Add files
                         </Button>
                         <Button VerticalAlignment="Center" Margin="70,0,0,0"
-                                Click="RemoveFilesClick">
+                                Click="RemoveFilesCommand">
                             Remove files
                         </Button>
                     </StackPanel>
@@ -52,8 +52,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="5*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
@@ -90,11 +89,8 @@
                         Start creating
                     </Button>
 
-                    <Label Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                           Content="{Binding Status}">
-                        
-                    </Label>
-                    <ProgressBar Grid.Row="8" Grid.ColumnSpan="2" Margin="2"
+                    <ProgressBar Grid.Row="7" Grid.ColumnSpan="2" Margin="5,15,5,15"
+
                                  Maximum="{Binding AllFoldersCount}" 
                                  Value="{Binding ProcessedFoldersCount}"
                                  Minimum="0">

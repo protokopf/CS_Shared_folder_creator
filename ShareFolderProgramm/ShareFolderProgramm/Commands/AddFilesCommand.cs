@@ -26,9 +26,12 @@ namespace ShareFolderProgramm.Commands
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Multiselect = true;
             DialogResult result = dlg.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
-                _viewModel.FileNames.AddRange(dlg.FileNames);
+                foreach(string str in dlg.FileNames)
+                {
+                    _viewModel.FileNames.Add(str);
+                }
             }
         }
     }

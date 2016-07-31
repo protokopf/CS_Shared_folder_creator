@@ -7,7 +7,7 @@ using SharedFolderProgrammDll.Algorythms.Feeding;
 using SharedFolderProgrammDll.Algorythms.Sharing;
 using SharedFolderProgrammDll.Entities.Folder;
 using SharedFolderProgrammDll.Entities.FilesBatch;
-
+using System.Collections.ObjectModel;
 
 namespace SharedFolderProgrammDll.Model
 {
@@ -65,11 +65,15 @@ namespace SharedFolderProgrammDll.Model
             }
         }
 
-        public List<String> FileNames
+        public ObservableCollection<String> FileNames
         {
             get
             {
                 return _fileBatch.Files;
+            }
+            set
+            {
+                _fileBatch.Files = value;
             }
         }
 

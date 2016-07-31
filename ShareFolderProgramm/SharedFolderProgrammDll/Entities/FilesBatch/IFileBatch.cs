@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SharedFolderProgrammDll.Entities.FilesBatch
 {
     public interface IFileBatch
     {
-        List<String> Files { get; }
+        ObservableCollection<String> Files { get; set; }
     }
 }

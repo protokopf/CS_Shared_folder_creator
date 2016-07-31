@@ -1,11 +1,9 @@
 ﻿using ShareFolderProgramm.ViewModel;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace ShareFolderProgramm.View
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private SharingFolderViewModel _viewModel;
@@ -18,9 +16,15 @@ namespace ShareFolderProgramm.View
             InitializeComponent();
         }
 
-        private void RemoveFilesClick(object sender, RoutedEventArgs e)
+        private void RemoveFilesCommand(object sender, RoutedEventArgs e)
         {
-            
+            List<int> indexes = new List<int>();
+
+            foreach(var item in listBox.SelectedItems)
+                indexes.Add(listBox.Items.IndexOf(item));
+
+            foreach(int index in indexes)
+                _viewModel.FileNames.RemoveAt(index);
         }
     }
 }

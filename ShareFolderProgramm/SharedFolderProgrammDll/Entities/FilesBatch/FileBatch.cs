@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SharedFolderProgrammDll.Entities.FilesBatch
 {
     class FileBatch : IFileBatch
     {
-        private List<String> _files;
+        private ObservableCollection<String> _files;
 
         public FileBatch()
         {
-            _files = new List<string>();
+            _files = new ObservableCollection<string>();
         }
 
-        public List<string> Files
+        public ObservableCollection<string> Files
         {
             get
             {
                 return _files;
+            }
+            set
+            {
+                _files = value;
             }
         }
     }

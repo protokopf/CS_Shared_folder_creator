@@ -105,9 +105,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedFolderProgrammDll\SharedFolderProgrammDll.csproj">
+    <ProjectReference Include="..\SharedFolderProgrammDll\SharedFolderProgrammLogick.csproj">
       <Project>{8EC6F4CC-47FA-4658-9B4B-780D9DBEA20A}</Project>
-      <Name>SharedFolderProgrammDll</Name>
+      <Name>SharedFolderProgrammLogick</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

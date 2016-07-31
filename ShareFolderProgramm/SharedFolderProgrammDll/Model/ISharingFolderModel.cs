@@ -1,6 +1,7 @@
 ﻿using SharedFolderProgrammDll.Entities.Events.FolderCreatedEvent;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SharedFolderProgrammDll.Model
 {
@@ -13,8 +14,8 @@ namespace SharedFolderProgrammDll.Model
         String FolderNamePrefix { get; set; }
 
         event FolderHasBeenProcessed FolderProcessed;
-        
-        List<String> FileNames { get; }
+
+        ObservableCollection<String> FileNames { get; set; }
 
         void CreateFolders();
         void ShareFolders();

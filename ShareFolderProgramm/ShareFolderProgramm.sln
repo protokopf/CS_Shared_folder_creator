@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareFolderProgramm", "ShareFolderProgramm\ShareFolderProgramm.csproj", "{FA152F3F-1263-4768-8178-39CFF1EA3766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedFolderProgrammDll", "SharedFolderProgrammDll\SharedFolderProgrammDll.csproj", "{8EC6F4CC-47FA-4658-9B4B-780D9DBEA20A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedFolderProgrammLogick", "SharedFolderProgrammDll\SharedFolderProgrammLogick.csproj", "{8EC6F4CC-47FA-4658-9B4B-780D9DBEA20A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

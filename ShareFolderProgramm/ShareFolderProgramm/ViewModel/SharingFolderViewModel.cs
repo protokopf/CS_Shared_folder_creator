@@ -8,11 +8,14 @@ using System.Windows.Input;
 using ShareFolderProgramm.Commands;
 using System.Windows;
 using ShareFolderProgramm.ViewModel.Validators;
+using System.Collections.ObjectModel;
 
 namespace ShareFolderProgramm.ViewModel
 {
     public class SharingFolderViewModel :  INotifyPropertyChanged
     {
+        private bool _isEnable;
+
         private ISharingFolderModel _model;
         private IValidator _validator;
 
@@ -26,10 +29,8 @@ namespace ShareFolderProgramm.ViewModel
             CreateFoldersCommand = new CreateFoldersCommand(this);
             AddFilesCommand = new AddFilesCommand(this);
             
-
-            Status = "Status: setting";
-            IsControlsEnable = true;
             AllFoldersCount = 1;
+            IsControlsEnable = true;
         }
 
         private void FolderProcessed(FolderProcessedEventArgs e)
@@ -67,11 +68,16 @@ namespace ShareFolderProgramm.ViewModel
             }
         }
 
-        public List<string> FileNames
+        public ObservableCollection<string> FileNames
         {
             get
             {
                 return _model.FileNames;
+            }
+            set
+            {
+                _model.FileNames = value;
+                OnPropertyChanged("FileNames");
             }
         }
 
@@ -102,8 +108,18 @@ namespace ShareFolderProgramm.ViewModel
             }
         }
 
-        public string Status { get; set; }
-        public bool IsControlsEnable { get; set; }
+        public bool IsControlsEnable
+        {
+            get
+            {
+                return _isEnable;
+            }
+            set
+            {
+                _isEnable = value;
+                OnPropertyChanged("IsControlsEnable");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -112,15 +128,11 @@ namespace ShareFolderProgramm.ViewModel
             Task.Run(() =>
             {
                 IsControlsEnable = false;
-                Status = "Status: creating folders";
                 _model.CreateFolders();
-                Status = "Status: sharing folders";
                 _model.ShareFolders();
-                Status = "Status: feeding folders";
                 _model.FeedFolders();
                 MessageBox.Show(String.Format("{0} folders has been created!", AllFoldersCount), "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
                 IsControlsEnable = true;
-                Status = "Status: setting";
             });
         }
         public bool Validate()
