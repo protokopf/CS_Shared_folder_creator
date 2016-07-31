@@ -18,13 +18,13 @@ namespace ShareFolderProgramm.View
 
         private void RemoveFilesCommand(object sender, RoutedEventArgs e)
         {
-            List<int> indexes = new List<int>();
+            List<string> strings = new List<string>();
 
             foreach(var item in listBox.SelectedItems)
-                indexes.Add(listBox.Items.IndexOf(item));
+                strings.Add(item.ToString());
 
-            foreach(int index in indexes)
-                _viewModel.FileNames.RemoveAt(index);
+            foreach (string str in strings)
+                _viewModel.FileNames.Remove(str);
         }
     }
 }

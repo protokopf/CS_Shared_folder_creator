@@ -15,7 +15,8 @@ namespace ShareFolderProgramm.ViewModel.Validators
 
         public bool Validate()
         {
-            return ValidateParentFolder() && ValidateFoldersCount() && ValidatePrefix();
+            return ValidateParentFolder() && ValidateFoldersCount() 
+                && ValidatePrefix() && ValidateEqualityPrefixAndFolderName();
         }
 
         private bool ValidateParentFolder()
@@ -45,5 +46,15 @@ namespace ShareFolderProgramm.ViewModel.Validators
             }
             return isOk;
         }
+        private bool ValidateEqualityPrefixAndFolderName()
+        {
+            bool isNotEqual = !_viewModel.ParentFolder.ToLower().EndsWith(_viewModel.FolderNamePrefix.ToLower());
+            if(!isNotEqual)
+            {
+                MessageBox.Show("Folder prefix and parent folder name have not to be the same!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return isNotEqual;
+        }
+
     }
 }

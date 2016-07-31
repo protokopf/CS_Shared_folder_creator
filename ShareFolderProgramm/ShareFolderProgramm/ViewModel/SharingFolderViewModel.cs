@@ -129,7 +129,9 @@ namespace ShareFolderProgramm.ViewModel
             {
                 IsControlsEnable = false;
                 _model.CreateFolders();
+                
                 _model.ShareFolders();
+
                 _model.FeedFolders();
                 MessageBox.Show(String.Format("{0} folders has been created!", AllFoldersCount), "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
                 IsControlsEnable = true;
